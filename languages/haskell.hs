@@ -45,8 +45,8 @@ solveCase = concat  -- Adjust me!
 
 
 -- | The important filepaths. Adjust if necessary.
-downloadDirectory = "C:\\Users\\Ben\\Downloads\\"
-uploadDirectory   = "C:\\Users\\Ben\\Desktop\\codejam\\"
+downloadDirectory = "~\\Downloads\\"
+uploadDirectory   = "~\\codejam\\"
 
 -- | Returns a list of 
 format :: [String] -> [String]
