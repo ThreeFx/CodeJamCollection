@@ -23,7 +23,8 @@
  */
 
 using System;
-using System.Diagnostics;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
@@ -107,6 +108,10 @@ namespace CodeJamCollection
             }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Finished!");
+
+            sr.Close();
+            sw.Close();
+
             Console.ReadKey(true);
         }
     }
