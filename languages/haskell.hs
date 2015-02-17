@@ -64,7 +64,7 @@ solveAll solveFunc str = solveFunc input : solveAll solveFunc rest
     lines = 1 --  Change this according to the number of lines the case has.
 
 -- | Reads the cases from the file specified at program start.
--- Returns the file line by line.
+--   Returns the file line by line.
 getProblems :: [String] -> IO [String]
 getProblems args = fmap lines $ readFile filepath
   where
