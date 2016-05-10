@@ -1,18 +1,18 @@
 {-
  -  The MIT License (MIT)
- -  
+ -
  -  Copyright (c) 2015 Ben Fiedler
- -  
+ -
  -  Permission is hereby granted, free of charge, to any person obtaining a copy
  -  of this software and associated documentation files (the "Software"), to deal
  -  in the Software without restriction, including without limitation the rights
  -  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  -  copies of the Software, and to permit persons to whom the Software is
  -  furnished to do so, subject to the following conditions:
- -  
+ -
  -  The above copyright notice and this permission notice shall be included in
  -  all copies or substantial portions of the Software.
- -  
+ -
  -  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  -  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  -  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,29 +26,35 @@
 module Main where
 
 -- | Imports (add if necessary)
-import Data.List (intercalate)
-import Data.List.Split (splitOneOf)
+import Data.List
+import Data.List.Split
+import Data.Ord
+
+import Control.Applicative
+import Control.Monad
+
+import System.FilePath
 import System.Environment (getArgs)
 
 -- | Type synonym for more readability
 type Solver = [String] -> String
 
 -- | Main function.
-main = output getLine . solveAllCases =<< getProblems =<< getArgs
+main = (\x -> output x . solveAllCases =<< getProblems =<< x) $ fmap head getArgs
   where
     solveAllCases = format . solveAll solveCase . drop 1
 
 
 -- | Solves a single case.
 solveCase :: Solver
-solveCase = concat  -- Adjust me!
+solveCase = const "aaa"  -- Adjust me!
 
 
 -- | The important filepaths. Adjust if necessary.
-downloadDirectory = "~\\Downloads\\"
-uploadDirectory   = "~\\codejam\\"
+downloadDirectory = "~" </> "Downloads" </> ""
+uploadDirectory   = "~" </> "Downloads" </> ""
 
--- | Returns a list of 
+-- | Returns a list of formatted solutions
 format :: [String] -> [String]
 format = map prettify . zip [1..]
   where
@@ -65,10 +71,10 @@ solveAll solveFunc str = solveFunc input : solveAll solveFunc rest
 
 -- | Reads the cases from the file specified at program start.
 --   Returns the file line by line.
-getProblems :: [String] -> IO [String]
+getProblems :: String -> IO [String]
 getProblems args = fmap lines $ readFile filepath
   where
-    filepath = downloadDirectory ++ intercalate "-" args ++ ".in"
+    filepath = downloadDirectory ++ args ++ ".in"
 
 -- | Writes the solved cases to the specified file.
 output :: IO String -> [String] -> IO ()
