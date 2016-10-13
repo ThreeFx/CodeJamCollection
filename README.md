@@ -1,3 +1,3 @@
-# CodeJamCollection #
+# Coding challenges #
 
-A collection of boilerplate code for the Google Code Jam in different Languages.
+A collection of boilerplate code for programming contests in different Languages.
